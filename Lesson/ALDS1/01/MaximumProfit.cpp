@@ -1,18 +1,25 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 int main() {
-  int i, n, num, max, min;
+  int n, max, min, buf;
   cin >> n;
-  for(i = 0; i < n; i++) {
-	cin >> num;
-	if(i == 0) min = num;
-	if(i == 1) max = num;
-	else {
-	  max = (max > (num - min)) ? max : num - min;
-	  min = (min < num) ? min : num;
+  vector<int> v1(n);
+  for(int i = 0; i < n; ++i) {
+	cin >> buf;
+	v1[i] = buf;
+	
+	if(i == 0) {
+	  min = v1[i];
 	}
-  }
-  cout << max - min << endl;
 
+	if(i == 1) {
+	  max = v1[i] - v1[i - 1];
+	}
+	
+	max = max > (v1[i] - min) ? max : v1[i] - min;
+	min = min < v1[i] ? min : v1[i];
+  }
+  cout << max << endl;
   return 0;
 }
