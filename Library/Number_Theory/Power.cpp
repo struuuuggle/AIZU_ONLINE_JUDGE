@@ -1,21 +1,22 @@
-//途中
 #include <iostream>
 #include <cmath>
-#define Y 1000000007
 using namespace std;
-int main() {
-  long long r;
-  int i, m, n, a, x = 6, b;
-  cin >> m >> n;
-  a = n / x;
-  b = n % x;
-  r = pow(m, b);
-  for(i = 0; i < a; i++) {
-	r += pow(m, x);
-	while (r > Y) {
-	  r -= Y;
+typedef long long ll;
+
+ll pow(ll m, ll n, ll mod) {
+  ll res = 1;
+  while(n > 0) {
+	if(n & 1) {
+	  res = res * m % mod;
 	}
+	m = m * m % mod;
+	n >>= 1;
   }
-  cout << r << endl;
+  return res;
+}
+int main() {
+  ll a, b;
+  cin >> a >> b;
+  cout << pow(a, b, 1000000007) << endl;
   return 0;
 }
