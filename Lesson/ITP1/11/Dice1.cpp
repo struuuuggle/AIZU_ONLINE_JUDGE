@@ -10,6 +10,22 @@ class Dice {
 	  dice[i] = label[i];
 	}
   }
+
+  void move(char ch) {
+	if(ch == 'N') {
+	  moveN();
+	}
+	else if(ch == 'E') {
+	  moveE();
+	}
+	else if(ch == 'S') {
+	  moveS();
+	}
+	else {
+	  moveW();
+	}
+  }
+  
   void moveN() {
 	tmp = dice[0];
 	dice[0] = dice[1];
@@ -57,18 +73,7 @@ int main() {
   d1.init();
 
   while(cin >> ch) {
-	if(ch == 'N') {
-	  d1.moveN();
-	}
-	else if(ch == 'E') {
-	  d1.moveE();
-	}
-	else if(ch == 'S') {
-	  d1.moveS();
-	}
-	else {
-	  d1.moveW();
-	}
+	d1.move(ch);
 	//	print(d1);
   }
   cout << d1.dice[0] << endl;
