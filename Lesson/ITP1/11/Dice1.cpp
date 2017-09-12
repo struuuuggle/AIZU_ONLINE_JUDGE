@@ -1,16 +1,18 @@
 #include <iostream>
 using namespace std;
 class Dice {
- public:
+private:
   int dice[6];
-  int label[6];
   int tmp;
-  void init() {
-	for(int i = 0; i < 6; ++i) {
-	  dice[i] = label[i];
-	}
+ public:
+  Dice(int a, int b, int c, int d, int e, int f) {
+	dice[0] = a;
+	dice[1] = b;
+	dice[2] = c;
+	dice[3] = d;
+	dice[4] = e;
+	dice[5] = f;
   }
-
   void move(char ch) {
 	if(ch == 'N') {
 	  moveN();
@@ -25,7 +27,6 @@ class Dice {
 	  moveW();
 	}
   }
-  
   void moveN() {
 	tmp = dice[0];
 	dice[0] = dice[1];
@@ -54,6 +55,9 @@ class Dice {
 	dice[5] = dice[3];
 	dice[3] = tmp;
   }
+  int top() {
+	return dice[0];
+  }
 };
 /*
 void print(Dice d1) {
@@ -64,19 +68,16 @@ void print(Dice d1) {
 }
 */
 int main() {
-  Dice d1;
   char ch;
-  
-  for(int i = 0; i < 6; ++i) {
-	cin >> d1.label[i];
-  }
-  d1.init();
+  int a, b, c, d, e, f;
+  cin >> a >> b >> c >> d >> e >> f;
+  Dice d1(a, b, c, d, e, f);
 
   while(cin >> ch) {
 	d1.move(ch);
 	//	print(d1);
   }
-  cout << d1.dice[0] << endl;
+  cout << d1.top() << endl;
 
   return 0;
 }
