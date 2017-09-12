@@ -1,60 +1,77 @@
-/*
-top = 3, 4のときは遷移が一意に定まらない。
-*/
-
 #include <iostream>
 using namespace std;
 class Dice {
  public:
-  int top;
+  int dice[6];
   int label[6];
-  void moveN() {
-	if (top == label[0]) {top = label[1];}
-	else if (top == label[1]) {top = label[5];}
-	else if (top == label[2]) {top = label[5];}
-	else if (top == label[3]) {top = label[1];}
-	else if (top == label[4]) {top = label[0];}
-	else if (top == label[5]) {top = label[4];}
+  int tmp;
+  void init() {
+	for(int i = 0; i < 6; ++i) {
+	  dice[i] = label[i];
+	}
   }
-  void moveE() {
-	if (top == label[0]) {top = label[3];}
-	else if (top == label[1]) {top = label[3];}
-	else if (top == label[2]) {top = label[1];}
-	else if (top == label[3]) {top = label[5];}
-	else if (top == label[4]) {top = label[3];}
-	else if (top == label[5]) {top = label[3];}
+  void moveN() {
+	tmp = dice[0];
+	dice[0] = dice[1];
+	dice[1] = dice[5];
+	dice[5] = dice[4];
+	dice[4] = tmp;
   }
   void moveS() {
-	if (top == label[0]) {top = label[4];}
-	else if (top == label[1]) {top = label[0];}
-	else if (top == label[2]) {top = label[0];}
-	else if (top == label[3]) {top = label[4];}
-	else if (top == label[4]) {top = label[5];}
-	else if (top == label[5]) {top = label[1];}
+	tmp = dice[0];
+	dice[0] = dice[4];
+	dice[4] = dice[5];
+	dice[5] = dice[1];
+	dice[1] = tmp;
+  }
+  void moveE() {
+	tmp = dice[0];
+	dice[0] = dice[3];
+	dice[3] = dice[5];
+	dice[5] = dice[2];
+	dice[2] = tmp;
   }
   void moveW() {
-	if (top == label[0]) {top = label[2];}
-	else if (top == label[1]) {top = label[2];}
-	else if (top == label[2]) {top = label[4];}
-	else if (top == label[3]) {top = label[0];}
-	else if (top == label[4]) {top = label[2];}
-	else if (top == label[5]) {top = label[2];}
+	tmp = dice[0];
+	dice[0] = dice[2];
+	dice[2] = dice[5];
+	dice[5] = dice[3];
+	dice[3] = tmp;
   }
 };
-
+/*
+void print(Dice d1) {
+    for(int i = 0; i < 6; ++i) {
+	  cout << "i:" << i << endl;
+	  cout << "\tdice:" << d1.dice[i] << endl;
+	}
+}
+*/
 int main() {
   Dice d1;
   char ch;
-  d1.top = 1;
-  for(int i = 0; i < 6; i++) {
+  
+  for(int i = 0; i < 6; ++i) {
 	cin >> d1.label[i];
   }
+  d1.init();
+
   while(cin >> ch) {
-	if(ch == 'N') {d1.moveN();}
-	else if(ch == 'E') {d1.moveE();}
-	else if(ch == 'S') {d1.moveS();}
-	else if(ch == 'W') {d1.moveW();}
+	if(ch == 'N') {
+	  d1.moveN();
+	}
+	else if(ch == 'E') {
+	  d1.moveE();
+	}
+	else if(ch == 'S') {
+	  d1.moveS();
+	}
+	else {
+	  d1.moveW();
+	}
+	//	print(d1);
   }
-  cout << d1.top << endl;
+  cout << d1.dice[0] << endl;
+
   return 0;
 }
