@@ -3,7 +3,7 @@ using namespace std;
 class Dice {
 private:
   int dice[6];
-  int tmp;
+  //  int tmp;
  public:
   Dice(int a, int b, int c, int d, int e, int f) {
 	dice[0] = a;
@@ -28,32 +28,24 @@ private:
 	}
   }
   void moveN() {
-	tmp = dice[0];
-	dice[0] = dice[1];
-	dice[1] = dice[5];
-	dice[5] = dice[4];
-	dice[4] = tmp;
+	swap(dice[0], dice[1]);
+	swap(dice[1], dice[5]);
+	swap(dice[5], dice[4]);
   }
   void moveS() {
-	tmp = dice[0];
-	dice[0] = dice[4];
-	dice[4] = dice[5];
-	dice[5] = dice[1];
-	dice[1] = tmp;
+	swap(dice[0], dice[4]);
+	swap(dice[4], dice[5]);
+	swap(dice[5], dice[1]);
   }
   void moveE() {
-	tmp = dice[0];
-	dice[0] = dice[3];
-	dice[3] = dice[5];
-	dice[5] = dice[2];
-	dice[2] = tmp;
+	swap(dice[0], dice[3]);
+	swap(dice[3], dice[5]);
+	swap(dice[5], dice[2]);
   }
   void moveW() {
-	tmp = dice[0];
-	dice[0] = dice[2];
-	dice[2] = dice[5];
-	dice[5] = dice[3];
-	dice[3] = tmp;
+	swap(dice[0], dice[2]);
+	swap(dice[2], dice[5]);
+	swap(dice[5], dice[3]);
   }
   int top() {
 	return dice[0];
