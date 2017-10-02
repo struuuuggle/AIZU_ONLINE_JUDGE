@@ -23,7 +23,7 @@ int main() {
   cout << n << ":";
 
   while(n > 1) {
-    for(int i = 2; i <= 50847534; ++i) {
+    for(int i = 2; ; ++i) {
       if(isPrime(n)) {
         cout << " " << n;
         n /= n;
