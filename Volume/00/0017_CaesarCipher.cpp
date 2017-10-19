@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 bool isSmallAlphabet(char& ch) {
@@ -13,6 +14,42 @@ bool isHit(string& str) {
   else if(str.find("that") != str.npos) return true;
   else return false;
 }
+
+char shiftIndex(char ch) {
+  if(isSmallAlphabet(ch)) {
+    ch += 1;
+    /* ずらした結果小文字ではなかったら*/
+    if(!isSmallAlphabet(ch)) {
+      ch -= 26;
+    }
+  }
+  return ch;
+}
+
+/* シーザー暗号解読(改良版) */
+void CaesarCipher2(string str) {
+  
+  /* pの値だけアルファベットをずらしていく */
+  for(int p = 0; p < 26; ++p) {
+
+    transform(str.begin(), str.end(), str.begin(), shiftIndex);
+
+    /* Find "the" or "this" or "that" */
+    if(isHit(str)) {
+      cout << str << endl;
+    }
+  }
+}
+
+int main() {
+  string str;
+  while(getline(cin, str)) {
+    CaesarCipher2(str);
+  }
+  return 0;
+}
+
+
 
 /* シーザー暗号解読 */
 void CaesarCipher(string _str) {
@@ -38,12 +75,4 @@ void CaesarCipher(string _str) {
       cout << str << endl;
     }
   }
-}
-
-int main() {
-  string str;
-  while(getline(cin, str)) {
-    CaesarCipher(str);
-  }
-  return 0;
 }
