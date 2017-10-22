@@ -9,25 +9,24 @@ typedef complex<double> P;
 #define EQ(a,b) (abs((a)-(b)) < EPS)
 
 /* 外積 (cross product) : a×b = |a||b|sin */
-double cross(P a, P b) {
+double cross(const P& a, const P& b) {
   return (a.real() * b.imag() - a.imag() * b.real());
 }
 
 /* 内積 (dot product) : a⋅b = |a||b|cosθ  */
-double dot(P a, P b) {
+double dot(const P& a, const P& b) {
   return (a.real() * b.real() + a.imag() * b.imag());
 }
 
 /* 2直線の直交判定 : a⊥b <=> dot(a, b) = 0 */
-int isOrthogonal(P a1, P a2, P b1, P b2) {
+int isOrthogonal(const P& a1, const P& a2, const P& b1, const P& b2) {
   return EQ( dot(a1-a2, b1-b2), 0.0 );
 }
 
 /* 2直線の平行判定 : a//b <=> cross(a, b) = 0 */
-int isParallel(P a1, P a2, P b1, P b2) {
+int isParallel(const P& a1, const P& a2, const P& b1, const P& b2) {
   return EQ( cross(a1-a2, b1-b2), 0.0 );
 }
-
 
 int main() {
   int n;
