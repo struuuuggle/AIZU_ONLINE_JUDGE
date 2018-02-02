@@ -3,7 +3,7 @@ using namespace std;
 
 class rect {
 public:
-  int h,w;
+  int h, w;
   // 対角線の2乗
   int diagonal() {
     return h * h + w * w;
@@ -13,10 +13,7 @@ public:
 // x > y なら1を返す
 int rect_cmp(rect x, rect y) {
   if(x.diagonal() > y.diagonal()) return 1;
-  else if(x.diagonal() == y.diagonal()) {
-    if(x.h > y.h) return 1;
-    else return 0;
-  }
+  else if(x.diagonal() == y.diagonal() && x.h > y.h) return 1;
   else return 0;
 }
 
